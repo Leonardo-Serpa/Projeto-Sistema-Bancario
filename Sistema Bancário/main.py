@@ -9,10 +9,13 @@ class Cliente:
         self.contas = []
 
     def realizar_transacao(self, conta, transacao):
+<<<<<<< HEAD
         if len(conta.historico.transacoes_do_dia()) >= 2:
             print('Você excedeu o limite máximo de transações permitidas para hoje!')
             return
         
+=======
+>>>>>>> 3a77c37acd864b214eb6460a128681787f6b672f
         transacao.registrar(conta)
 
     def adicionar_conta(self, conta):
@@ -138,6 +141,7 @@ class Historico:
         self._transacoes.append({
             'tipo': transacao.__class__.__name__,
             'valor': transacao.valor,
+<<<<<<< HEAD
             'data': datetime.utcnow().strftime
             ("%d-%m-%Y %H:%M:%S"),
         })
@@ -156,6 +160,12 @@ class Historico:
                 transacoes.append(transacao)
         return transacoes      
 
+=======
+            'data': datetime.now().strftime
+            ("%d-%m-%Y %H:%M:%S"),
+        })
+
+>>>>>>> 3a77c37acd864b214eb6460a128681787f6b672f
 
 class Transacao(ABC):
     
@@ -278,6 +288,7 @@ def exibir_extrato(clientes):
         return
     
     print('================ EXTRATO ================')
+<<<<<<< HEAD
     extrato = ''
     tem_transacao = False
     for transacao in conta.historico.gerar_relatorio():
@@ -286,6 +297,16 @@ def exibir_extrato(clientes):
 
     if not tem_transacao:
         extrato = 'Não foram realizadas movimentações'
+=======
+    transacoes = conta.historico.transacoes
+
+    extrato = ''
+    if not transacoes:
+        extrato = 'Não foram realizadas movimentações'
+    else:
+        for transacao in transacoes:
+            extrato += f"\n{transacao['tipo']}:\n\tR${transacao['valor']:.2f}"
+>>>>>>> 3a77c37acd864b214eb6460a128681787f6b672f
 
     print(extrato)
     print(f'\nSaldo:\n\tR${conta.saldo:.2f}')
@@ -309,6 +330,10 @@ def criar_cliente(clientes):
 
     print('Cliente criado com sucesso!')
     
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3a77c37acd864b214eb6460a128681787f6b672f
 def criar_conta(numero_conta, clientes, contas):
     cpf = input('Informe o CPF do cliente: ')
     cliente = filtrar_cliente(cpf, clientes)
